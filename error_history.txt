@@ -1,0 +1,11 @@
+16/01/2023 :
+http://127.0.0.1:5000/solistatus/create
+
+IntegrityError
+
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: webapp.nom
+[SQL: INSERT INTO webapp (nom, pastille, description) VALUES (?, ?, ?)]
+[parameters: ('SAP', 'pastille link', 'Tout est OK')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+
+**********************************************************************************************************************************
