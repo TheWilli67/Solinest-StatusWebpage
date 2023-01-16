@@ -8,4 +8,12 @@ sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed
 [parameters: ('SAP', 'pastille link', 'Tout est OK')]
 (Background on this error at: https://sqlalche.me/e/14/gkpj)
 
+Réponse de ChatGPT : 
+L'erreur "sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: webapp.nom" signifie qu'il y a une 
+violation de contrainte d'intégrité de la colonne "nom" de la table "webapp". 
+Cela signifie que vous essayez d'insérer une valeur dans cette colonne qui est déjà 
+présente dans la table et qui est définie comme étant unique. Il faut changer la valeur de 
+la colonne qui est en conflit avec la contrainte unique. --> "nom = db.Column(db.String, unique=True)"
+erreur résolue !! 👍
+
 **********************************************************************************************************************************
