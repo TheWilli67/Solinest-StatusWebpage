@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin page</title>
+</head>
+<body>
+	
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body>
+
+	<h3>
+		<a href="{{ url_for('show_all') }}">Comments - FlaskSQLAlchemy example</a>
+	</h3>
+
+	<hr />
+	{%- for message in get_flashed_messages() %}
+	{{ message }}
+	{%- endfor %}
+
+	<h3>Students (<a href="{{ url_for('webapp_create') }}">Add Student</a>)</h3>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Pastille</th>
+				<th>Nom</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for Webapp in Webapp %}
+			<tr>
+				<td>{{ Webapp.pastille }}</td>
+				<td>{{ Webapp.nom }}</td>
+				<td>{{ Webapp.description }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+</body>
+
+</html>
