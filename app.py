@@ -39,16 +39,21 @@ def webapp_create():
         )
         db.session.add(webapps)
         db.session.commit()
-        return redirect(url_for("webapp_detail", id=Webapp.id))
 
     return render_template("webapp/create.html")
 
 
-@app.route("/solistatus/<int:id>")
-def webapp_detail(id):
-    webapps = db.get_or_404(Webapp, id)
-    return render_template("webapp/detail.html", webapps=webapps)
-
+@app.route('/book/<int:isbn>', methods=['PUT'])
+def webapp_update(id):
+    Webap = Webapp.query.get(id)
+    if request.method == "POST":
+        webapps = Webapp(
+            nom=request.form["nom"],
+            pastille=request.form["pastille"],
+            description=request.form["description"]
+        )
+    db.session.commit(webapps)
+    return render_template("webapp/list.html")
 
 @app.route("/solistatus/<int:id>/delete", methods=["GET", "POST"])
 def webapp_delete(id):
