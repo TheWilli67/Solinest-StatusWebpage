@@ -49,7 +49,7 @@ def webapp_create():
     return render_template("webapp/create.html")
 
 
-@app.route('/solistatus/<int:id>', methods=['PUT'])
+@app.route('/solistatus/<int:id>', methods=['GET', 'POST', 'PUT'])
 def webapp_update(id):
     webapp = Webapp.query.get(id)
     if request.method == "PUT":
@@ -57,7 +57,7 @@ def webapp_update(id):
         webapp.pastille = request.form["pastille"]
         webapp.description = request.form["description"]
         db.session.commit()
-    return redirect(url_for('webapp_list'))
+    return redirect(url_for('webapp_create'))
 
 
 @app.route("/solistatus/<int:id>/delete", methods=["GET", "POST"])
