@@ -10,6 +10,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///web_solinest.db"
 # initialize the app with the extension
 db.init_app(app)
 
+
 class Webapp(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String)
@@ -17,7 +18,7 @@ class Webapp(db.Model):
     description = db.Column(db.String)
 
 
-#with app.app_context():
+# with app.app_context():
 #    db.create_all()
 
 @app.route("/")
@@ -25,6 +26,7 @@ def show_all():
     webapps = db.session.execute(
         db.select(Webapp).order_by(Webapp.nom)).scalars()
     return render_template("webapp/list_user.html", webapps=webapps)
+
 
 @app.route("/solistatus")
 def webapp_list():

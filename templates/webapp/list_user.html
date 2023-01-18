@@ -25,12 +25,11 @@
 		</thead>
 
 		<tbody>
-			{% for Webapp in Webapp %}
+			{% for Webapp in webapps %}
 			<tr>
 				<td>{{ Webapp.pastille }}</td>
 				<td>{{ Webapp.nom }}</td>
 				<td>{{ Webapp.description }}</td>
-				<td>{{ Webapp.id }}</td>
 			</tr>
 			{% endfor %}
 		</tbody>

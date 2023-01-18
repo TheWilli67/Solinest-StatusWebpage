@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	<title>Admin page</title>
-</head>	
+</head>
 
 <body>
 
@@ -20,13 +20,11 @@
 				<th>Nom</th>
 				<th>Description</th>
 				<th>ID</th>
-				<th>Delete</th>
-				<th>Update</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			{% for Webapp in Webapp %}
+			{% for Webapp in webapps %}
 			<tr>
 				<td>{{ Webapp.pastille }}</td>
 				<td>{{ Webapp.nom }}</td>
