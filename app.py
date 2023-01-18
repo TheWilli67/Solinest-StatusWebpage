@@ -43,17 +43,16 @@ def webapp_create():
     return render_template("webapp/create.html")
 
 
-@app.route('/book/<int:isbn>', methods=['PUT'])
+@app.route('/solistatus/<int:id>', methods=['PUT'])
 def webapp_update(id):
-    Webap = Webapp.query.get(id)
-    if request.method == "POST":
-        webapps = Webapp(
-            nom=request.form["nom"],
-            pastille=request.form["pastille"],
-            description=request.form["description"]
-        )
-    db.session.commit(webapps)
-    return render_template("webapp/list.html")
+    webapp = Webapp.query.get(id)
+    if request.method == "PUT":
+        webapp.nom = request.form["nom"]
+        webapp.pastille = request.form["pastille"]
+        webapp.description = request.form["description"]
+        db.session.commit()
+    return redirect(url_for('webapp_list'))
+
 
 @app.route("/solistatus/<int:id>/delete", methods=["GET", "POST"])
 def webapp_delete(id):
