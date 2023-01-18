@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
-import sqlalchemy as sa
 
 # create the extension
 db = SQLAlchemy()
@@ -13,14 +12,19 @@ db.init_app(app)
 
 class Webapp(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nom = db.Column(db.String, unique=True)
+    nom = db.Column(db.String)
     pastille = db.Column(db.String)
     description = db.Column(db.String)
 
 
+#with app.app_context():
+#    db.create_all()
+
 @app.route("/")
 def show_all():
-   return render_template('webapp/list_user.html', Webapp=Webapp.query.all())
+    webapps = db.session.execute(
+        db.select(Webapp).order_by(Webapp.nom)).scalars()
+    return render_template("webapp/list_user.html", webapps=webapps)
 
 @app.route("/solistatus")
 def webapp_list():
@@ -61,6 +65,6 @@ def webapp_delete(id):
     if request.method == "POST":
         db.session.delete(webapps)
         db.session.commit()
-        return redirect(url_for("/solistatus"))
+        return redirect(url_for("webapp_list"))
 
-    return render_template("webapp/delete.html", webapps=webapps)
+    return render_template("webapp/list.html", webapps=webapps)

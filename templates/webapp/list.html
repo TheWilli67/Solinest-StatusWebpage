@@ -5,24 +5,23 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	<title>Admin page</title>
-</head>
+</head>	
 
 <body>
 
-	<hr />
-	{%- for message in get_flashed_messages() %}
-	{{ message }}
-	{%- endfor %}
+	<h3><a href="{{ url_for('webapp_create') }}">Add Software</a></h3>
 
-	<h3>Students (<a href="{{ url_for('webapp_create') }}">Add Student</a>)</h3>
-
-	<table>
+	<table class="display_table">
 		<thead>
 			<tr>
 				<th>Pastille</th>
 				<th>Nom</th>
 				<th>Description</th>
+				<th>ID</th>
+				<th>Delete</th>
+				<th>Update</th>
 			</tr>
 		</thead>
 
@@ -32,6 +31,9 @@
 				<td>{{ Webapp.pastille }}</td>
 				<td>{{ Webapp.nom }}</td>
 				<td>{{ Webapp.description }}</td>
+				<td>{{ Webapp.id }}</td>
+				<td><a href="{{ url_for('webapp_delete') }}">Del</a></td>
+				<td><a href="{{ url_for('webapp_update') }}">Update</a></td>
 			</tr>
 			{% endfor %}
 		</tbody>
