@@ -62,11 +62,8 @@ def webapp_update(id):
 
 @app.route("/solistatus/<int:id>/delete", methods=["GET", "POST"])
 def webapp_delete(id):
-    webapps = db.get_or_404(Webapp, id)
-
-    if request.method == "POST":
-        db.session.delete(webapps)
-        db.session.commit()
-        return redirect(url_for("webapp_list"))
+    webapps = Webapp.query.get_or_404(id)
+    db.session.delete(webapps)
+    db.session.commit()
 
     return render_template("webapp/list.html", webapps=webapps)

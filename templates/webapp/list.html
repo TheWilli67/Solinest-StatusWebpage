@@ -24,14 +24,14 @@
 		</thead>
 
 		<tbody>
-			{% for webapp in webapps %}
+			{% for Webapp in webapps %}
 			<tr>
-				<td>{{ webapp.pastille }}</td>
-				<td>{{ webapp.nom }}</td>
-				<td>{{ webapp.description }}</td>
-				<td>{{ webapp.id }}</td>
-				<td><a href="{{ url_for('webapp_delete', id=webapp.id) }}">Delete</a></td>
-				<td><a href="{{ url_for('webapp_update', id=webapp.id) }}">Update</a></td>
+				<td>{{ Webapp.pastille }}</td>
+				<td>{{ Webapp.nom }}</td>
+				<td>{{ Webapp.description }}</td>
+				<td>{{ Webapp.id }}</td>
+				<td><a href="/solistatus/{{ Webapp.id }}/delete">Delete</a></td>
+				<td><a href="{{ url_for('webapp_update', id=Webapp.id) }}">Update</a></td>
 			</tr>
 			{% endfor %}
 
