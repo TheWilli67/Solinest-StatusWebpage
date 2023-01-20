@@ -10,13 +10,11 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///web_solinest.db"
 # initialize the app with the extension
 db.init_app(app)
 
-
 class Webapp(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nom = db.Column(db.String)
     pastille = db.Column(db.String)
     description = db.Column(db.String)
-
 
 # with app.app_context():
 #    db.create_all()
@@ -27,13 +25,11 @@ def show_all():
         db.select(Webapp).order_by(Webapp.nom)).scalars()
     return render_template("webapp/list_user.html", webapps=webapps)
 
-
 @app.route("/solistatus")
 def webapp_list():
     webapps = db.session.execute(
         db.select(Webapp).order_by(Webapp.nom)).scalars()
     return render_template("webapp/list.html", webapps=webapps)
-
 
 @app.route("/solistatus/create", methods=["GET", "POST"])
 def webapp_create():
@@ -48,7 +44,6 @@ def webapp_create():
 
     return render_template("webapp/create.html")
 
-
 @app.route('/solistatus/<int:id>', methods=['GET', 'POST', 'PUT'])
 def webapp_update(id):
     webapp = Webapp.query.get(id)
@@ -59,11 +54,9 @@ def webapp_update(id):
         db.session.commit()
     return redirect(url_for('webapp_create'))
 
-
-@app.route("/solistatus/<int:id>/delete", methods=["GET", "POST"])
+@app.route("/solistatus/<int:id>/delete", methods=["GET"])
 def webapp_delete(id):
-    webapps = Webapp.query.get_or_404(id)
+    webapps = Webapp.query.get(id)
     db.session.delete(webapps)
     db.session.commit()
-
-    return render_template("webapp/list.html", webapps=webapps)
+    return render_template("webapp/list.html")
