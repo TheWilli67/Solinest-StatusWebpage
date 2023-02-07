@@ -5,11 +5,15 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	<title>Create page</title>
 </head>
 
 <body>
-	<a href="{{ url_for('webapp_list') }}" style="text-decoration: none;">Home page</a><br>
+	<a href="{{ url_for('webapp_list') }}" style="text-decoration: none;"><h1 id="homepage">Home page</h1></a><br>
 	<form method="post">
 		<div class="form-group">
 			<label for="nom">Nom</label>
@@ -24,8 +28,8 @@
 		</div>
 		<div class="form-group">
 			<label for="description">Description</label>
-			<input type="text" class="form-control" id="description" name="description"
-				value="{{ webapp.description }}">
+			<textarea type="text" class="form-control" id="description"
+				name="description">{{ webapp.description }}</textarea>
 		</div>
 		<button type="submit" class="btn btn-primary">Update</button>
 	</form>

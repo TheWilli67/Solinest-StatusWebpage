@@ -5,6 +5,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	<title>Admin page</title>
 </head>
@@ -19,6 +22,7 @@
 				<th>Pastille</th>
 				<th>Nom</th>
 				<th>Description</th>
+				<th>Dernière mise à jour</th>
 				<th>ID</th>
 			</tr>
 		</thead>
@@ -26,10 +30,12 @@
 		<tbody>
 			{% for Webapp in webapps %}
 			<tr>
-				<td class="tiny"><img style="width: 40px;" src="https://icones.pro/wp-content/uploads/2021/04/icone-cercle-rempli-{{Webapp.pastille }}.png" style="width: 10%;"
-						alt=""></td>
+				<td class="tiny"><img style="width: 40px;"
+						src="https://icones.pro/wp-content/uploads/2021/04/icone-cercle-rempli-{{Webapp.pastille }}.png"
+						style="width: 10%;" alt=""></td>
 				<td>{{ Webapp.nom }}</td>
 				<td>{{ Webapp.description }}</td>
+				<td>{{ Webapp.update_time }} CET</td>
 				<td>{{ Webapp.id }}</td>
 				<td><a href="/solistatus/{{ Webapp.id }}/delete">Delete</a></td>
 				<td><a href="/solistatus/update/{{ Webapp.id }}">Update</a></td>
