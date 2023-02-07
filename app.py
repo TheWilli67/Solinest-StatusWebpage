@@ -16,7 +16,7 @@ class Webapp(db.Model):
     pastille = db.Column(db.String)
     description = db.Column(db.String)
 
-# with app.app_context():
+#with app.app_context():
 #    db.create_all()
 
 @app.route("/")
@@ -56,7 +56,7 @@ def webapp_update(id):
 
 @app.route("/solistatus/<int:id>/delete", methods=["GET"])
 def webapp_delete(id):
-    webapps = Webapp.query.get(id)
+    webapps = Webapp.query².get(id)
     db.session.delete(webapps)
     db.session.commit()
     return render_template("webapp/list.html")
