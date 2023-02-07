@@ -26,12 +26,13 @@
 		<tbody>
 			{% for Webapp in webapps %}
 			<tr>
-				<td>{{ Webapp.pastille }}</td>
+				<td class="tiny"><img style="width: 40px;" src="https://icones.pro/wp-content/uploads/2021/04/icone-cercle-rempli-{{Webapp.pastille }}.png" style="width: 10%;"
+						alt=""></td>
 				<td>{{ Webapp.nom }}</td>
 				<td>{{ Webapp.description }}</td>
 				<td>{{ Webapp.id }}</td>
 				<td><a href="/solistatus/{{ Webapp.id }}/delete">Delete</a></td>
-				<td><a href="/solistatus/{{ Webapp.id }} ">Update</a></td>
+				<td><a href="/solistatus/update/{{ Webapp.id }}">Update</a></td>
 			</tr>
 			{% endfor %}
 

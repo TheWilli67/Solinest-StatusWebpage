@@ -5,16 +5,19 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 	<title>User page</title>
 </head>
+{% block header %}
+{% endblock %}
 
 <body>
 
 	<hr />
-	{%- for message in get_flashed_messages() %}
+	{% for message in get_flashed_messages() %}
 	{{ message }}
-	{%- endfor %}
-	<table>
+	{% endfor %}
+	<table class="display_table">
 		<thead>
 			<tr>
 				<th>Pastille</th>
@@ -26,7 +29,9 @@
 		<tbody>
 			{% for Webapp in webapps %}
 			<tr>
-				<td>{{ Webapp.pastille }}</td>
+				<td ><img style="width: 40px;"
+						src="https://icones.pro/wp-content/uploads/2021/04/icone-cercle-rempli-{{Webapp.pastille }}.png"
+						alt=""></td>
 				<td>{{ Webapp.nom }}</td>
 				<td>{{ Webapp.description }}</td>
 			</tr>

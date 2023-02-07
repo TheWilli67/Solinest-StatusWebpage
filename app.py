@@ -19,13 +19,13 @@ class Webapp(db.Model):
 #with app.app_context():
 #    db.create_all()
 
-@app.route("/")
+@app.route("/solistatus")
 def show_all():
     webapps = db.session.execute(
         db.select(Webapp).order_by(Webapp.nom)).scalars()
     return render_template("webapp/list_user.html", webapps=webapps)
 
-@app.route("/solistatus")
+@app.route("/admin")
 def webapp_list():
     webapps = db.session.execute(
         db.select(Webapp).order_by(Webapp.nom)).scalars()
@@ -41,22 +41,21 @@ def webapp_create():
         )
         db.session.add(webapps)
         db.session.commit()
-
     return render_template("webapp/create.html")
 
-@app.route('/solistatus/<int:id>', methods=['GET', 'POST', 'PUT'])
+@app.route("/solistatus/update/<int:id>", methods=["GET", "POST"])
 def webapp_update(id):
     webapp = Webapp.query.get(id)
-    if request.method == "PUT":
+    if request.method == "POST":
         webapp.nom = request.form["nom"]
         webapp.pastille = request.form["pastille"]
         webapp.description = request.form["description"]
         db.session.commit()
-    return redirect(url_for('webapp_create'))
+    return render_template("webapp/update.html", webapp=webapp)
 
 @app.route("/solistatus/<int:id>/delete", methods=["GET"])
 def webapp_delete(id):
-    webapps = Webapp.query².get(id)
+    webapps = Webapp.query.get(id)
     db.session.delete(webapps)
     db.session.commit()
-    return render_template("webapp/list.html")
+    return redirect(url_for('webapp_list'))
