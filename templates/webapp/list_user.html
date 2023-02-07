@@ -12,7 +12,7 @@
 	<script type="text/javascript">
 		setTimeout(function () {
 			location.reload();
-		}, 60000);
+		}, 30000);
 	</script>
 	<title>User page</title>
 </head>
@@ -21,11 +21,12 @@
 
 <body>
 	<h1>Solinest Status Platform</h1>
+	<h4>Rafraichissement de la page toutes les 30s</h4>
 	<p id="time"></p>
 
 	<script>
 		const now = new Date();
-		const options = { timeZone: 'Europe/Paris' };
+		const options = { timeZone: 'CET', timeZoneName: "short" };
 		const cetTime = now.toLocaleTimeString('fr-FR', options);
 
 		document.querySelector('#time').innerHTML = cetTime;
@@ -34,10 +35,10 @@
 	<table class="display_table">
 		<thead>
 			<tr>
-				<th>Pastille</th>
-				<th>Nom</th>
-				<th>Description</th>
-				<th>Dernière mise à jour</th>
+				<th style="width: 5%;">Pastille</th>
+				<th style="width: 10%;">Service</th>
+				<th style="width: 20%;">Description</th>
+				<th style="width: 10%;">Dernière mise à jour</th>
 			</tr>
 		</thead>
 
@@ -49,7 +50,7 @@
 						alt=""></td>
 				<td>{{ Webapp.nom }}</td>
 				<td>{{ Webapp.description }}</td>
-				<td>{{ Webapp.update_time }} CET</td>
+				<td>{{ Webapp.update_time }} UTC+1</td>
 			</tr>
 			{% endfor %}
 		</tbody>
